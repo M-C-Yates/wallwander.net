@@ -5,6 +5,7 @@ namespace Wallwander.Domain.Models
 {
   public class User
   {
+    public string id;
     public string Email;
     public string userName;
     public string password;

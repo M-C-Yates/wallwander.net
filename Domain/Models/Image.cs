@@ -1,12 +1,10 @@
-using System;
 
 namespace Wallwander.Domain.Models
 
 {
-
   public class Image
   {
-    public Guid id;
+    public string id;
     public string path;
     public string title;
     public (int, int) dimensions;
