@@ -28,6 +28,7 @@ using AutoMapper;
 using Features.Interfaces;
 using Infrastructure.Security;
 using API.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace API
 {
@@ -58,7 +59,7 @@ namespace API
       });
 
       services.AddMediatR(typeof(Register.Handler).Assembly);
-      services.AddAutoMapper(typeof(Register.Handler));
+      // services.AddAutoMapper(typeof(Register.Handler));
 
       services.AddControllers(opt =>
       {
@@ -71,6 +72,18 @@ namespace API
       services.AddDefaultIdentity<AppUser>()
       .AddEntityFrameworkStores<DataContext>()
       .AddSignInManager<SignInManager<AppUser>>();
+
+      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
+      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+      {
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = key,
+          ValidateAudience = false,
+          ValidateIssuer = false
+        };
+      });
 
       services.AddScoped<IJwtGenerator, JwtGenerator>();
     }
