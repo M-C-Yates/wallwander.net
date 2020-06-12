@@ -59,7 +59,8 @@ namespace Features.Users.Commands
         var user = new AppUser
         {
           UserName = request.Username,
-          Email = request.Email
+          Email = request.Email,
+          CreatedAt = DateTime.Now
         };
 
         var result = await _userManager.CreateAsync(user, request.Password);
@@ -70,7 +71,7 @@ namespace Features.Users.Commands
           {
             Token = _jwtGenerator.CreateToken(user),
             Username = user.UserName,
-            CreatedAt = DateTime.Now
+            CreatedAt = user.CreatedAt
           };
         }
         else
