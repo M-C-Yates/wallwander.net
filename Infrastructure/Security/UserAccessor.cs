@@ -1,10 +1,11 @@
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Features.Interfaces;
 
 namespace Infrastructure.Security
 {
-  public class UserAccessor
+  public class UserAccessor : IUserAccessor
   {
     private readonly IHttpContextAccessor _httpContextAccessor;
 

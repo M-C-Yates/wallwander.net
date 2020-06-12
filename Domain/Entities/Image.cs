@@ -9,6 +9,7 @@ namespace Domain.Entities
     public string Path { get; set; }
     public int Views { get; set; }
     public int Favorites { get; set; }
+    public virtual AppUser Author { get; set; }
 
   }
 }

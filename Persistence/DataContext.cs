@@ -18,6 +18,10 @@ namespace Persistence
     protected override void OnModelCreating(ModelBuilder builder)
     {
       base.OnModelCreating(builder);
+      builder.Entity<AppUser>()
+      .HasMany(au => au.Uploads)
+      .WithOne(u => u.Author);
+
     }
   }
 }
