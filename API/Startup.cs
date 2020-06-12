@@ -63,8 +63,10 @@ namespace API
 
       services.AddControllers(opt =>
       {
-
-      }).AddFluentValidation(cfg =>
+        var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+        opt.Filters.Add(new AuthorizeFilter(policy));
+      })
+      .AddFluentValidation(cfg =>
       {
         cfg.RegisterValidatorsFromAssemblyContaining<Register>();
       });
