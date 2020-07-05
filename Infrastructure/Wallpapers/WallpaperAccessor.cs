@@ -1,3 +1,4 @@
+using System;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Features.Interfaces;
@@ -36,6 +37,11 @@ namespace Infrastructure.Wallpapers
           };
           uploadResult = _cloudinary.Upload(uploadParams);
         }
+      }
+
+      if (uploadResult.Error != null)
+      {
+        throw new Exception(uploadResult.Error.Message);
       }
 
       return new WallpaperUploadResult
