@@ -1,15 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <ItemGroup>
-    <ProjectReference Include="..\Features\Features.csproj"/>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+    <ProjectReference Include="..\Features\Features.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4"/>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>ecbcf736-e6d9-4d9c-83e0-f8bf923d8503</UserSecretsId>
   </PropertyGroup>
 </Project>
