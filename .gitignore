@@ -292,7 +292,7 @@ __pycache__/
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
+appsettings.Production.json
 
 
 # End of https://www.gitignore.io/api/aspnetcore,visualstudiocode

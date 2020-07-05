@@ -13,7 +13,7 @@ namespace Persistence
 
     }
 
-    public DbSet<Image> Images { get; set; }
+    public DbSet<Wallpaper> Wallpapers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

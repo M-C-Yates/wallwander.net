@@ -86,7 +86,7 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Image", b =>
+            modelBuilder.Entity("Domain.Entities.Wallpaper", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,10 +98,10 @@ namespace Persistence.Migrations
                     b.Property<int>("Favorites")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Path")
+                    b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Url")
                         .HasColumnType("text");
 
                     b.Property<int>("Views")
@@ -111,7 +111,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Images");
+                    b.ToTable("Wallpapers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -248,7 +248,7 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Image", b =>
+            modelBuilder.Entity("Domain.Entities.Wallpaper", b =>
                 {
                     b.HasOne("Domain.Entities.AppUser", "Author")
                         .WithMany("Uploads")

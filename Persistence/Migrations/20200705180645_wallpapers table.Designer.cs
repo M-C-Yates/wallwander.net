@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200610161655_initial migration")]
-    partial class initialmigration
+    [Migration("20200705180645_wallpapers table")]
+    partial class wallpaperstable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace Persistence.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .HasColumnType("character varying(256)")
@@ -69,9 +72,6 @@ namespace Persistence.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("Uploads")
-                        .HasColumnType("integer");
-
                     b.Property<string>("UserName")
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
@@ -88,19 +88,22 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Image", b =>
+            modelBuilder.Entity("Domain.Entities.Wallpaper", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("text");
+
                     b.Property<int>("Favorites")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Path")
+                    b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Url")
                         .HasColumnType("text");
 
                     b.Property<int>("Views")
@@ -108,7 +111,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Wallpapers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -243,6 +248,13 @@ namespace Persistence.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Wallpaper", b =>
+                {
+                    b.HasOne("Domain.Entities.AppUser", "Author")
+                        .WithMany("Uploads")
+                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
