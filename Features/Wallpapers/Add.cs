@@ -13,14 +13,12 @@ namespace Features.Wallpapers
 {
   public class Add
   {
-    public class Command : IRequest<Wallpaper>
+    public class Command : IRequest<WallpaperUploadResult>
     {
-      // entity properties
       public IFormFile File { get; set; }
-      public string Name { get; set; }
     }
 
-    public class Handler : IRequestHandler<Command, Wallpaper>
+    public class Handler : IRequestHandler<Command, WallpaperUploadResult>
     {
       private readonly DataContext _context;
       private readonly IUserAccessor _userAccessor;
@@ -33,7 +31,7 @@ namespace Features.Wallpapers
         _wallpaperAccessor = wallpaperAccessor;
       }
 
-      public async Task<Wallpaper> Handle(Command request, CancellationToken cancellationToken)
+      public async Task<WallpaperUploadResult> Handle(Command request, CancellationToken cancellationToken)
       {
         var wallpaperUploadResult = _wallpaperAccessor.AddWallpaper(request.File);
 
@@ -46,13 +44,13 @@ namespace Features.Wallpapers
           Views = 0,
         };
 
-        user.Uploads.Add(wallpaper);
+        user.Wallpapers.Add(wallpaper);
 
         var success = await _context.SaveChangesAsync() > 0;
 
         if (success)
         {
-          return wallpaper;
+          return wallpaperUploadResult;
         }
         else
         {

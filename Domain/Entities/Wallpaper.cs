@@ -6,7 +6,6 @@ namespace Domain.Entities
   {
     public Guid Id { get; set; }
     public string PublicId { get; set; }
-    public string Name { get; set; }
     public string Url { get; set; }
     public int Views { get; set; }
     public int Favorites { get; set; }

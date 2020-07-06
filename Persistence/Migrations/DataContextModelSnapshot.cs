@@ -254,7 +254,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Wallpaper", b =>
                 {
                     b.HasOne("Domain.Entities.AppUser", "Author")
-                        .WithMany("Uploads")
+                        .WithMany("Wallpapers")
                         .HasForeignKey("AuthorId");
                 });
 

@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200705180645_wallpapers table")]
-    partial class wallpaperstable
+    [Migration("20200706170735_updated wallpaper")]
+    partial class updatedwallpaper
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,6 +101,9 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PublicId")
                         .HasColumnType("text");
 
                     b.Property<string>("Url")
@@ -253,7 +256,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Wallpaper", b =>
                 {
                     b.HasOne("Domain.Entities.AppUser", "Author")
-                        .WithMany("Uploads")
+                        .WithMany("Wallpapers")
                         .HasForeignKey("AuthorId");
                 });
 

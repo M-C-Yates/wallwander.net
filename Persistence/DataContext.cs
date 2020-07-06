@@ -19,8 +19,8 @@ namespace Persistence
     {
       base.OnModelCreating(builder);
       builder.Entity<AppUser>()
-      .HasMany(au => au.Uploads)
-      .WithOne(u => u.Author);
+      .HasMany(au => au.Wallpapers)
+      .WithOne(w => w.Author);
 
     }
   }

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Persistence.Migrations
 {
-    public partial class wallpaperstable : Migration
+    public partial class updatedwallpaper : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -159,6 +159,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    PublicId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
                     Views = table.Column<int>(nullable: false),
